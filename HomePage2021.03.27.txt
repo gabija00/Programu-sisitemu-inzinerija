@@ -1,0 +1,129 @@
+import 'react-native-gesture-handler';
+import { ScreenContainer } from "react-native-screens";
+import React ,{useState} from 'react';
+import { StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions } from 'react-native';
+
+const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf599b8c1d78bda7f.jpg" };
+difficultyLevel = 0;//sitas bus reikalingas skaiciuojant
+
+
+  export const Register = ({ navigation} ) => {
+    return (
+      <View >
+      <ScreenContainer>
+      <ImageBackground source={image} style={styles.image}></ImageBackground>
+      <Text style= {styles.header}>Prisijunkite</Text>
+      <TextInput placeholder="Vardas" style={styles.input} underlineColorAndroid={'transparent'} />
+      <View style={styles.button}>
+        <Button title="Register" onPress= {() => navigation.push("HomePage")} color= "#c717fc"/>
+        </View>
+      </ScreenContainer>
+      </View>
+    );
+  }
+
+  export const HomePage = ({ navigation}) => {
+    return (
+      <ScreenContainer>
+      <ImageBackground source={image} style={styles.image}></ImageBackground>
+      <View style={styles.button}>
+      <Button title= "Play" onPress= {() => navigation.push("OptionsPage1")} color= "#c717fc"/>
+      <View style={styles.button1}>
+      <Button title= "Settings"/></View>
+      <Button title= "Credits"/>
+      </View>
+      </ScreenContainer>
+    );
+  }
+
+  export const OptionsPage1 = ({ navigation}) => {
+          return (
+            <ScreenContainer>
+            <ImageBackground source={image} style={styles.image}></ImageBackground>
+            <View style={styles.button}>
+            <Button title= "Topics" onPress= {() => navigation.push("OptionsPage2Topics")} color= "#c717fc"/>
+            <Button title= "General" onPress= {() => navigation.push("OptionsPage2General")} color= "#c717fc"/>
+            </View>
+            </ScreenContainer>
+          );
+     }
+
+   export const OptionsPage2General = () => {
+        return (
+          <ScreenContainer>
+          <ImageBackground source={image} style={styles.image}></ImageBackground>
+          <View style={styles.button}>
+          <Button title= "Easy"onPress= {() => difficultyLevel = 1}/>
+          <Button title= "Medium" onPress= {() => difficultyLevel = 2} />
+          <Button title= "Hard" onPress= {() => difficultyLevel = 3}/>
+          </View>
+          </ScreenContainer>
+        );
+   }
+   export const OptionsPage2Topics = () => {
+           return (
+             <ScreenContainer>
+             <ImageBackground source={image} style={styles.image}></ImageBackground>
+             <View style={styles.button}>
+             <Button title= "Math"/>
+             <Button title= "History"/>
+             <Button title= "Biology"/>
+             <Button title= "Languages"/>
+             </View>
+             </ScreenContainer>
+           );
+      }
+   export const SettingsPage = () => {
+           return (
+             <ScreenContainer>
+             <ImageBackground source={image} style={styles.image}></ImageBackground>
+
+             </ScreenContainer>
+           );
+      }
+
+  const styles = StyleSheet.create({
+    header:{
+      fontSize:30,
+      alignSelf:'center',
+      top: 0,
+      margin:100,
+      color:'#fff'
+    },
+    image: {
+      flex: 1,
+      resizeMode: "cover",
+      justifyContent: "center",
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+      position:"absolute",
+      zIndex: -1,
+
+    },
+    button: {
+      width:150,
+      alignSelf:"center",
+      margin:200,
+
+    },
+    button1: {
+      width:150,
+      alignSelf:"center",
+      margin:50,
+
+
+    },
+    input: {
+      width:300,
+      height:40,
+      borderColor:'#000',
+      borderWidth:1,
+      padding:1,
+      backgroundColor:'#fff',
+      alignSelf:'center',
+      textAlign:'center',
+      marginBottom:10,
+    },
+  });
+
+

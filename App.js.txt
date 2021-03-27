@@ -1,0 +1,17 @@
+import React from "react";
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import {Register,HomePage} from "./Screens/HomePage";
+
+const AuthStack = createStackNavigator(); 
+
+export default () => (
+    <NavigationContainer>
+        <AuthStack.Navigator >
+            <AuthStack.Screen name = "Register" component= {Register} />
+            <AuthStack.Screen name = "HomePage" component= {HomePage}/>
+        </AuthStack.Navigator>
+    </NavigationContainer>
+);

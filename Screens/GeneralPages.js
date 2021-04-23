@@ -40,7 +40,8 @@ render(){
     return(
     <ScreenContainer>
    <ImageBackground source={image} style={styles.image}></ImageBackground>
-   <Text style={{color: 'black',fontSize:20, margin: 20, alignSelf:'center'}}> {this.state.count} </Text>
+   <Text style={styles.Points}> Points </Text>
+   <Text style={styles.Points}> {this.state.count} </Text>
    <CountDown
                           style = {styles.timer}
 
@@ -69,55 +70,12 @@ render(){
 }
 export  class GeneralMedium extends Component{
 
-constructor(){
+  constructor(){
     super();
-    this.state = {
-    textValue: 'Question'
-    }
+    this.state = { textValue: 'Question', count: 0 }
     this.onPressButton= this.onPressButton.bind(this);
 }
 
-onPressButton() {
-    this.setState({
-        textValue: 'New question'
-    })
-}
-
-render(){
- const { navigation } = this.props;
-    return(
-
-    <ScreenContainer>
-   <ImageBackground source={image} style={styles.image}></ImageBackground>
-   <CountDown
-                          style = {styles.timer}
-                          until={45}
-                          timeToShow={['M', 'S']}
-                          //formate to show
-                          onFinish={() => this.props.navigation.navigate('OptionsPage1')}
-                          //on Finish call
-
-                          //onPress={() => alert('hello')}
-                          //on Press call
-                          size={20}
-
-                        />
-
-<View style={{paddingTop: 20}}>
-  <Text style={{color: 'black',fontSize:20, margin: 20, alignSelf:'center'}}> {this.state.textValue} </Text>
-  <Text style={{color: 'black',fontSize:20, margin: 20, alignSelf:'center'}}> {this.state.textValue} </Text>
-  <TextInput placeholder="Answer" style={styles.input} underlineColorAndroid={'transparent'} />
-  <Button title= 'Submit answer' onPress= {this.onPressButton}/>
-</View>
-
-   </ScreenContainer>
-   );
- }
-
-}
-export  class GeneralHard extends Component{
-
-  state = { count: 0 }
 
   increment = () => {
     this.setState({
@@ -131,17 +89,107 @@ export  class GeneralHard extends Component{
     });
   }
 
-  render() {
-    return (
-      <View>
-         <Button title= '-1' onPress= {this.decrement}/>
-         <Text> {this.state.count}</Text>
-         <Button title= '+1' onPress= {this.increment}/>
+onPressButton() {
+    this.setState({
+        textValue: 'New question'
+    })
+}
 
-      </View>
-     
-    )
+render(){
+  const { navigation } = this.props;
+    
+   // <Text> {navigation.getParam('level')}</Text>
+    return(
+    <ScreenContainer>
+   <ImageBackground source={image} style={styles.image}></ImageBackground>
+   <Text style={styles.Points}> Points </Text>
+   <Text style={styles.Points}> {this.state.count} </Text>
+   <CountDown
+                          style = {styles.timer}
+
+                          until={45}
+                          timeToShow={['M', 'S']}
+                          //formate to show
+                          onFinish={() => this.props.navigation.navigate('OptionsPage1')}
+                          //on Finish call
+
+                          //onPress={() => alert('hello')}
+                          //on Press call
+                          size={20}
+
+   />
+
+<View style={{paddingTop: 20}}>
+  <Text style={{color: 'black',fontSize:20, margin: 20, alignSelf:'center'}}> {this.state.textValue} </Text>
+  <TextInput placeholder="Answer" style={styles.input} underlineColorAndroid={'transparent'} />
+  <Button title= 'Submit answer' onPress= {this.onPressButton, this.increment}/>
+</View>
+
+   </ScreenContainer>
+   );
+ }
+
+}
+export  class GeneralHard extends Component{
+
+  constructor(){
+    super();
+    this.state = { textValue: 'Question', count: 0 }
+    this.onPressButton= this.onPressButton.bind(this);
+}
+
+
+  increment = () => {
+    this.setState({
+      count: this.state.count + 1
+    });
   }
+
+  decrement = () => {
+    this.setState({
+      count: this.state.count - 1
+    });
+  }
+
+onPressButton() {
+    this.setState({
+        textValue: 'New question'
+    })
+}
+
+render(){
+  const { navigation } = this.props;
+    
+   // <Text> {navigation.getParam('level')}</Text>
+    return(
+    <ScreenContainer>
+   <ImageBackground source={image} style={styles.image}></ImageBackground>
+   <Text style={styles.Points}> Points </Text>
+   <Text style={styles.Points}> {this.state.count} </Text>
+   <CountDown
+                          style = {styles.timer}
+
+                          until={30}
+                          timeToShow={['M', 'S']}
+                          //formate to show
+                          onFinish={() => this.props.navigation.navigate('OptionsPage1')}
+                          //on Finish call
+
+                          //onPress={() => alert('hello')}
+                          //on Press call
+                          size={20}
+
+   />
+
+<View style={{paddingTop: 20}}>
+  <Text style={{color: 'black',fontSize:20, margin: 20, alignSelf:'center'}}> {this.state.textValue} </Text>
+  <TextInput placeholder="Answer" style={styles.input} underlineColorAndroid={'transparent'} />
+  <Button title= 'Submit answer' onPress= {this.onPressButton, this.increment}/>
+</View>
+
+   </ScreenContainer>
+   );
+ }
 
 }
 
@@ -162,11 +210,19 @@ export  class GeneralHard extends Component{
       color:'#c717fc',
       backgroundColor:"#fff"
     },
+    Points:{
+      top:20,
+      fontSize:25,
+      alignSelf:'center',
+      margin:10,
+      color:'black',
+      backgroundColor:"#fff"
+    },
     timer:{
         fontSize:20,
         alignSelf:'center',
-        top:80,
-        margin:70,
+        top:30,
+        margin:40,
         color:'#c717fc'
             },
     header2:{
@@ -210,3 +266,4 @@ export  class GeneralHard extends Component{
       marginBottom:10,
     },
   });
+

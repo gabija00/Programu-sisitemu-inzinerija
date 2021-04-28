@@ -1,42 +1,51 @@
 import 'react-native-gesture-handler';
 import { ScreenContainer } from "react-native-screens";
 import React ,{useState, useEffect, Component} from 'react';
-import {SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions } from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions, Alert } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 
 const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf599b8c1d78bda7f.jpg" };
+
+
+
+const questions = ['2*2?', '5+5?', '9-7?', '22+27?', 'sqrt9?', 'sqrt36?', 'sqrt25?'];
 
 export  class GeneralEasy extends Component{
 
 constructor(){
     super();
-    this.state = { textValue: 'Question', count: 0 }
+    this.state = { textValue: questions[questions.length], count: 0 }
     this.onPressButton= this.onPressButton.bind(this);
 }
 
-
-  increment = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
-  }
-
-  decrement = () => {
-    this.setState({
-      count: this.state.count - 1
-    });
-  }
-
 onPressButton() {
-    this.setState({
-        textValue: 'New question'
-    })
+  this.setState({
+    count: this.state.count + 1 //galima prideti taskus sitaip
+  });
+  this.setState({
+      textValue: questions[this.state.count%questions.length]//galima keisti klausimus sitaip
+  })
+  
+}
+onFinish = (count) => {
+  this.props.navigation.navigate('OptionsPage1');
+  Alert.alert(
+    "Time is over !",
+    "Points: "+count.toString(),
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]
+  );
 }
 
+
 render(){
-  const { navigation } = this.props;
-    
-   // <Text> {navigation.getParam('level')}</Text>
+  
     return(
     <ScreenContainer>
    <ImageBackground source={image} style={styles.image}></ImageBackground>
@@ -48,20 +57,19 @@ render(){
                           until={60}
                           timeToShow={['M', 'S']}
                           //formate to show
-                          onFinish={() => this.props.navigation.navigate('OptionsPage1')}
-                          //on Finish call
+                          onFinish={() =>{this.onFinish(this.state.count)}}
 
                           //onPress={() => alert('hello')}
-                          //on Press call
+                          //on Press calls
                           size={20}
 
    />
 
-<View style={{paddingTop: 20}}>
+ <View style={{paddingTop: 20}}>
   <Text style={{color: 'black',fontSize:20, margin: 20, alignSelf:'center'}}> {this.state.textValue} </Text>
   <TextInput placeholder="Answer" style={styles.input} underlineColorAndroid={'transparent'} />
-  <Button title= 'Submit answer' onPress= {this.onPressButton, this.increment}/>
-</View>
+  <Button title= 'Submit answer' onPress= {this.onPressButton}/>
+ </View>
 
    </ScreenContainer>
    );
@@ -72,33 +80,38 @@ export  class GeneralMedium extends Component{
 
   constructor(){
     super();
-    this.state = { textValue: 'Question', count: 0 }
+    this.state = { textValue: questions[questions.length], count: 0 }
     this.onPressButton= this.onPressButton.bind(this);
 }
 
-
-  increment = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
-  }
-
-  decrement = () => {
-    this.setState({
-      count: this.state.count - 1
-    });
-  }
-
 onPressButton() {
-    this.setState({
-        textValue: 'New question'
-    })
+  this.setState({
+    count: this.state.count + 1 //galima prideti taskus sitaip
+  });
+  this.setState({
+      textValue: questions[this.state.count%questions.length]//galima keisti klausimus sitaip
+  })
+  
+}
+onFinish = (count) => {
+  this.props.navigation.navigate('OptionsPage1');
+  Alert.alert(
+    "Time is over !",
+    "Points: "+count.toString(),
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]
+  );
 }
 
+
 render(){
-  const { navigation } = this.props;
-    
-   // <Text> {navigation.getParam('level')}</Text>
+  
     return(
     <ScreenContainer>
    <ImageBackground source={image} style={styles.image}></ImageBackground>
@@ -110,57 +123,60 @@ render(){
                           until={45}
                           timeToShow={['M', 'S']}
                           //formate to show
-                          onFinish={() => this.props.navigation.navigate('OptionsPage1')}
-                          //on Finish call
+                          onFinish={() =>{this.onFinish(this.state.count)}}
 
                           //onPress={() => alert('hello')}
-                          //on Press call
+                          //on Press calls
                           size={20}
 
    />
 
-<View style={{paddingTop: 20}}>
+ <View style={{paddingTop: 20}}>
   <Text style={{color: 'black',fontSize:20, margin: 20, alignSelf:'center'}}> {this.state.textValue} </Text>
   <TextInput placeholder="Answer" style={styles.input} underlineColorAndroid={'transparent'} />
-  <Button title= 'Submit answer' onPress= {this.onPressButton, this.increment}/>
-</View>
+  <Button title= 'Submit answer' onPress= {this.onPressButton}/>
+ </View>
 
    </ScreenContainer>
    );
  }
-
 }
 export  class GeneralHard extends Component{
 
   constructor(){
     super();
-    this.state = { textValue: 'Question', count: 0 }
+    this.state = { textValue: questions[questions.length], count: 0 }
     this.onPressButton= this.onPressButton.bind(this);
 }
 
-
-  increment = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
-  }
-
-  decrement = () => {
-    this.setState({
-      count: this.state.count - 1
-    });
-  }
-
 onPressButton() {
-    this.setState({
-        textValue: 'New question'
-    })
+  this.setState({
+    count: this.state.count + 1 //galima prideti taskus sitaip
+  });
+  this.setState({
+      textValue: questions[this.state.count%questions.length]//galima keisti klausimus sitaip
+  })
+  
+}
+onFinish = (count) => {
+  this.props.navigation.navigate('OptionsPage1');
+  Alert.alert(
+    "Time is over !",
+    "Points: "+count.toString(),
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]
+  );
 }
 
+
 render(){
-  const { navigation } = this.props;
-    
-   // <Text> {navigation.getParam('level')}</Text>
+  
     return(
     <ScreenContainer>
    <ImageBackground source={image} style={styles.image}></ImageBackground>
@@ -172,20 +188,19 @@ render(){
                           until={30}
                           timeToShow={['M', 'S']}
                           //formate to show
-                          onFinish={() => this.props.navigation.navigate('OptionsPage1')}
-                          //on Finish call
+                          onFinish={() =>{this.onFinish(this.state.count)}}
 
                           //onPress={() => alert('hello')}
-                          //on Press call
+                          //on Press calls
                           size={20}
 
    />
 
-<View style={{paddingTop: 20}}>
+ <View style={{paddingTop: 20}}>
   <Text style={{color: 'black',fontSize:20, margin: 20, alignSelf:'center'}}> {this.state.textValue} </Text>
   <TextInput placeholder="Answer" style={styles.input} underlineColorAndroid={'transparent'} />
-  <Button title= 'Submit answer' onPress= {this.onPressButton, this.increment}/>
-</View>
+  <Button title= 'Submit answer' onPress= {this.onPressButton}/>
+ </View>
 
    </ScreenContainer>
    );
@@ -266,4 +281,3 @@ render(){
       marginBottom:10,
     },
   });
-

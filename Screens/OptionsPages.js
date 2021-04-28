@@ -28,7 +28,7 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
 
           <View style={styles.button3} >
 
-          <Button title= "Easy" onPress= {() => { navigation.navigate("GeneralEasy", {level:4}) } } color= "#c717fc"/>
+          <Button title= "Easy" onPress= {() => { navigation.navigate("GeneralEasy") } } color= "#c717fc"/>
           </View>
            <View style={styles.button3} >
           <Button title= "Medium" onPress= {() => navigation.navigate("GeneralMedium")} color= "#c717fc"/>

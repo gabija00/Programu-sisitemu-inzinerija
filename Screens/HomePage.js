@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import { ScreenContainer } from "react-native-screens";
 import React ,{useState, useEffect} from 'react';
-import {Overlay, SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions } from 'react-native';
+import {Overlay, SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions,Pressable } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 
 const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf599b8c1d78bda7f.jpg" };
@@ -62,14 +62,15 @@ difficultyLevel = 0;//sitas bus reikalingas skaiciuojant
     return (
       <ScreenContainer>
       <ImageBackground source={image} style={styles.image}></ImageBackground>
-      <Text style= {styles.header1}> {route.params.name}</Text>
+      <Pressable onPress={() => { navigation.navigate("ProfilePage", {name}) }}>
+      <Text style= {styles.headerProfile}> {route.params.name} </Text>
+      </Pressable>
 
       <View style={styles.button}>
-      <Button title= "Play" onPress= {() => navigation.push("OptionsPage1")} color= "#c717fc"/>
+      <Button title= "Play" onPress= {() => navigation.push("OptionsPage1", {name})} color= "#c717fc"/>
       <View style={styles.button1}>
       <Button title= "Settings" onPress= {() => navigation.push("SettingsPage")} color= "#c717fc"/>
       </View>
-      <Button title="Profile" onPress= {() => { navigation.navigate("ProfilePage", {name}) } } color= "#c717fc"/>
       </View>
       </ScreenContainer>
     );
@@ -81,7 +82,7 @@ difficultyLevel = 0;//sitas bus reikalingas skaiciuojant
          <ScreenContainer>
                 <ImageBackground source={image} style={styles.image}></ImageBackground>
 
-                <Text style= {styles.headerProfile2}> {route.params.name}</Text>
+                <Text style= {styles.headerProfile}> {route.params.name}</Text>
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(matematika): </Text>
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(istorija): </Text>
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(biologija): </Text>

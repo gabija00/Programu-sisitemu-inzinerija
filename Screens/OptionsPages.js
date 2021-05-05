@@ -1,39 +1,48 @@
 import 'react-native-gesture-handler';
 import { ScreenContainer } from "react-native-screens";
 import React ,{useState, useEffect} from 'react';
-import {SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions } from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions,Pressable } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 
 const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf599b8c1d78bda7f.jpg" };
 
-     export const OptionsPage1 = ({ navigation}) => {
+     export const OptionsPage1 = ({ navigation, route}) => {
+      const name = route.params.name;
           return (
             <ScreenContainer>
             <ImageBackground source={image} style={styles.image}></ImageBackground>
+            <Pressable onPress={() => { navigation.navigate("ProfilePage", {name}) }}>
+            <Text style= {styles.headerProfile}> {route.params.name} </Text>
+            </Pressable>
+
              <Text style={styles.header2}>Choose</Text>
             <View style={styles.button1}>
-            <Button title= "Topics" onPress= {() => navigation.push("OptionsPage2Topics")} color= "#c717fc"/>
+            <Button title= "Topics" onPress= {() => navigation.push("OptionsPage2Topics", {name})} color= "#c717fc"/>
             <View style={styles.button1}>
-            <Button title= "General" onPress= {() => navigation.push("OptionsPage2General")} color= "#c717fc"/></View>
+            <Button title= "General" onPress= {() => navigation.push("OptionsPage2General", {name})} color= "#c717fc"/></View>
             <Button title="Go back" onPress={() => navigation.goBack()} />
             </View>
             </ScreenContainer>
           );
      }
 
-   export const OptionsPage2General = ({ navigation}) => {
+   export const OptionsPage2General = ({ navigation, route}) => {
+    const name = route.params.name;
         return (
           <ScreenContainer>
           <ImageBackground source={image} style={styles.image}></ImageBackground>
+          <Pressable onPress={() => { navigation.navigate("ProfilePage", {name}) }}>
+          <Text style= {styles.headerProfile}> {route.params.name} </Text>
+          </Pressable>
 
-          <View style={styles.button3} >
+          <View style={styles.button3general} >
 
           <Button title= "Easy" onPress= {() => { navigation.navigate("GeneralEasy") } } color= "#c717fc"/>
           </View>
-           <View style={styles.button3} >
+           <View style={styles.button3general} >
           <Button title= "Medium" onPress= {() => navigation.navigate("GeneralMedium")} color= "#c717fc"/>
           </View>
-           <View style={styles.button3} >
+           <View style={styles.button3general} >
           <Button title= "Hard" onPress= {() => navigation.navigate("GeneralHard")} color= "#c717fc"/>
           </View>
            <View style={styles.button2} >
@@ -42,16 +51,30 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
           </ScreenContainer>
         );
    }
-   export const OptionsPage2Topics = ({ navigation}) => {
+   export const OptionsPage2Topics = ({ navigation, route}) => {
+    const name = route.params.name;
            return (
              <ScreenContainer>
              <ImageBackground source={image} style={styles.image}></ImageBackground>
+             <Pressable onPress={() => { navigation.navigate("ProfilePage", {name}) }}>
+             <Text style= {styles.headerProfile}> {route.params.name} </Text>
+             </Pressable>
+
              <Text style={styles.header2}>Pasirinkite</Text>
-             <View style={styles.button1}>
-             <Button title= "Math"/>
-             <Button title= "History"/>
-             <Button title= "Biology"/>
-             <Button title= "Languages"/>
+
+             <View style={styles.button3topics} >
+             <Button title= "Math" onPress= {() => { navigation.navigate("TopicsMath") } } color= "#c717fc"/>
+             </View>
+             <View style={styles.button3topics} >
+             <Button title= "History" onPress= {() => navigation.navigate("TopicsHistory")} color= "#c717fc"/>
+             </View>
+             <View style={styles.button3topics} >
+             <Button title= "Biology" onPress= {() => navigation.navigate("TopicsBiology")} color= "#c717fc"/>
+             </View>
+             <View style={styles.button3topics} >
+             <Button title= "Language" onPress= {() => navigation.navigate("TopicsLanguage")} color= "#c717fc"/>
+             </View>
+             <View style={styles.button3topics} >
              <Button title="Go back" onPress={() => navigation.goBack()} />
              </View>
              </ScreenContainer>
@@ -81,6 +104,22 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
      margin:50,
      color:'#fff'
          },
+     
+      headerProfile:{
+      fontSize:20,
+      textAlign: 'center',
+      alignSelf: 'flex-start',
+      color: 'white',
+      width: 150,
+      height: 50,
+      margin:20,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 10,
+      borderRadius: 20,
+      borderColor: 'black',
+      backgroundColor: 'orange',
+    },
      image: {
        flex: 1,
        resizeMode: "cover",
@@ -104,13 +143,7 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
             alignSelf:"center",
             margin:10,
           },
-      button3: {
-
-                      width:150,
-                      top: 150,
-                      alignSelf:"center",
-                      margin:10,
-                    },
+    
      button1: {
        width:150,
        alignSelf:"center",
@@ -127,6 +160,20 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
        textAlign:'center',
        marginBottom:10,
      },
+     button3topics: {
+
+      width:150,
+      top: 35,
+      alignSelf:"center",
+      margin:10,
+    },
+     button3general: {
+
+      width:150,
+      top: 170,
+      alignSelf:"center",
+      margin:10,
+    },
    });
 
 

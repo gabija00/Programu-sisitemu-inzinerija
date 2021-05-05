@@ -8,13 +8,17 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
 
 
 
-const questions = ['2*2?', '5+5?', '9-7?', '22+27?', 'sqrt9?', 'sqrt36?', 'sqrt25?'];
+const questionsMath = ['2*2?', '5+5?', '9-7?', '22+27?', 'sqrt9?', 'sqrt36?', 'sqrt25?'];
+const questionsHistory = ['Kada vyko Žalgirio mūšis?', 'Kada baigėsi antrasis pasaulinis karas?', 'Kuriais metais vyko Mindaugo karūnavimas?',
+ 'Kada išleista pirmoji lietuviška knyga?', 'Kada buvo pirmą kartą paminėtas Lietuvos vardas?'];
+const questionsBiology = ['Kaip vadinami gyvūnai, kurie ėda tik augalus?', 'Ar driežas yra roplys?', 'Kiek kojų turi voras?', 'Ar katės visada nusileidžia ant kojų?'];
+const questionsLanguage = ['Įrašykite raidę: šviečia sa_lė', 'Įrašykite raidę: katė m_ega', 'Įrašykite raidę: šuo _aidžia', 'Įrašykite raidę: vaikai bė_gioja'];
 
-export  class GeneralEasy extends Component{
+export  class TopicsMath extends Component{
 
 constructor(){
     super();
-    this.state = { textValue: questions[questions.length], count: 0 }
+    this.state = { textValue: questionsMath[questionsMath.length], count: 0 }
     this.onPressButton= this.onPressButton.bind(this);
 }
 
@@ -33,7 +37,164 @@ onPressButton() {
 
   });
   this.setState({    
-      textValue: questions[this.state.count%questions.length],//galima keisti klausimus sitaip
+      textValue: questionsMath[this.state.count%questionsMath.length],//galima keisti klausimus sitaip
+      value:'',
+  })  
+}
+
+onFinish = (count) => {
+  this.props.navigation.navigate('OptionsPage1');
+  Alert.alert(
+    "Time is over !",
+    "Points: "+count.toString(),
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]
+  );
+}
+
+
+render(){
+  
+    return(
+    <ScreenContainer>
+   <ImageBackground source={image} style={styles.image}></ImageBackground>
+   <Text style={styles.Points}> Points </Text>
+   <Text style={styles.Points}> {this.state.count} </Text>
+   <CountDown
+                          style = {styles.timer}
+
+                          until={60}
+                          timeToShow={['M', 'S']}
+                          //formate to show
+                          onFinish={() =>{this.onFinish(this.state.count)}}
+
+                          //onPress={() => alert('hello')}
+                          //on Press calls
+                          size={20}
+
+   />
+ 
+ <View style={{paddingTop: 20}}>
+  <Text style={{color: 'black',fontSize:20, margin: 10, alignSelf:'center'}}> {this.state.textValue} </Text>
+  <Text style={{color: 'red',fontSize:12, alignSelf:'center'}}>{this.state.emptyTextValue}  </Text>
+  <TextInput  placeholder='Answer' onChangeText={(text) => this.setState({value:text})} value={this.state.value}  keyboardType='numeric'  style={styles.input} underlineColorAndroid={'transparent'} />
+  <Button title= 'Submit answer' onPress= {this.onPressButton}/>
+ </View>
+
+   </ScreenContainer>
+   );
+ }
+
+}
+export  class TopicsHistory extends Component{
+
+  constructor(){
+    super();
+    this.state = { textValue: questionsHistory[questionsHistory.length], count: 0 }
+    this.onPressButton= this.onPressButton.bind(this);
+}
+
+onPressButton() {
+
+  const { value }  = this.state ;
+
+  if(value == ''){
+    this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
+  }else{
+      this.setState({emptyTextValue  : ''}) ;
+  }
+
+  this.setState({
+    count: this.state.count + 1 //galima prideti taskus sitaip
+
+  });
+  this.setState({    
+      textValue: questionsHistory[this.state.count%questionsHistory.length],//galima keisti klausimus sitaip
+      value:'',
+  })  
+}
+
+onFinish = (count) => {
+  this.props.navigation.navigate('OptionsPage1');
+  Alert.alert(
+    "Time is over !",
+    "Points: "+count.toString(),
+    [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel"
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ]
+  );
+}
+
+
+render(){
+  
+    return(
+    <ScreenContainer>
+   <ImageBackground source={image} style={styles.image}></ImageBackground>
+   <Text style={styles.Points}> Points </Text>
+   <Text style={styles.Points}> {this.state.count} </Text>
+   <CountDown
+                          style = {styles.timer}
+
+                          until={60}
+                          timeToShow={['M', 'S']}                         
+                          //formate to show
+                          onFinish={() =>{this.onFinish(this.state.count)}}
+
+                          //onPress={() => alert('hello')}
+                          //on Press calls
+                          size={20}
+
+   />
+
+<View style={{paddingTop: 20}}>
+  <Text style={{color: 'black',fontSize:20, margin: 10, alignSelf:'center'}}> {this.state.textValue} </Text>
+  <Text style={{color: 'red',fontSize:12, alignSelf:'center'}}>{this.state.emptyTextValue}  </Text>
+  <TextInput  placeholder='Answer' onChangeText={(text) => this.setState({value:text})} value={this.state.value}  keyboardType='default'  style={styles.input} underlineColorAndroid={'transparent'} />
+  <Button title= 'Submit answer' onPress= {this.onPressButton}/>
+</View>
+
+   </ScreenContainer>
+   );
+ }
+
+}
+
+export  class TopicsBiology extends Component{
+
+  constructor(){
+    super();
+    this.state = { textValue: questionsBiology[questionsBiology.length], count: 0 }
+    this.onPressButton= this.onPressButton.bind(this);
+}
+
+onPressButton() {
+
+  const { value }  = this.state ;
+
+  if(value == ''){
+    this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
+  }else{
+      this.setState({emptyTextValue  : ''}) ;
+  }
+
+  this.setState({
+    count: this.state.count + 1 //galima prideti taskus sitaip
+
+  });
+  this.setState({    
+      textValue: questionsBiology[this.state.count%questionsBiology.length],//galima keisti klausimus sitaip
       value:'',
   })  
 }
@@ -79,7 +240,7 @@ render(){
 <View style={{paddingTop: 20}}>
   <Text style={{color: 'black',fontSize:20, margin: 10, alignSelf:'center'}}> {this.state.textValue} </Text>
   <Text style={{color: 'red',fontSize:12, alignSelf:'center'}}>{this.state.emptyTextValue}  </Text>
-  <TextInput  placeholder='Answer' onChangeText={(text) => this.setState({value:text})} value={this.state.value}  keyboardType='numeric'  style={styles.input} underlineColorAndroid={'transparent'} />
+  <TextInput  placeholder='Answer' onChangeText={(text) => this.setState({value:text})} value={this.state.value}  keyboardType='default'  style={styles.input} underlineColorAndroid={'transparent'} />
   <Button title= 'Submit answer' onPress= {this.onPressButton}/>
 </View>
 
@@ -88,161 +249,85 @@ render(){
  }
 
 }
-export  class GeneralMedium extends Component{
 
-  constructor(){
-    super();
-    this.state = { textValue: questions[questions.length], count: 0 }
-    this.onPressButton= this.onPressButton.bind(this);
-}
+export  class TopicsLanguage extends Component{
 
-onPressButton() {
+    constructor(){
+      super();
+      this.state = { textValue: questionsLanguage[questionsLanguage.length], count: 0 }
+      this.onPressButton= this.onPressButton.bind(this);
+  }
+  
+  onPressButton() {
 
-  const { value }  = this.state ;
-
-  if(value == ''){
-    this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
-  }else{
-      this.setState({emptyTextValue  : ''}) ;
+    const { value }  = this.state ;
+  
+    if(value == ''){
+      this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
+    }else{
+        this.setState({emptyTextValue  : ''}) ;
+    }
+  
+    this.setState({
+      count: this.state.count + 1 //galima prideti taskus sitaip
+  
+    });
+    this.setState({    
+        textValue: questionsLanguage[this.state.count%questionsLanguage.length],//galima keisti klausimus sitaip
+        value:'',
+    })  
   }
 
-  this.setState({
-    count: this.state.count + 1 //galima prideti taskus sitaip
-
-  });
-  this.setState({    
-      textValue: questions[this.state.count%questions.length],//galima keisti klausimus sitaip
-      value:'',
-  })  
-}
-
-onFinish = (count) => {
-  this.props.navigation.navigate('OptionsPage1');
-  Alert.alert(
-    "Time is over !",
-    "Points: "+count.toString(),
-    [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel"
-      },
-      { text: "OK", onPress: () => console.log("OK Pressed") }
-    ]
-  );
-}
-
-
-render(){
-  
-    return(
-    <ScreenContainer>
-   <ImageBackground source={image} style={styles.image}></ImageBackground>
-   <Text style={styles.Points}> Points </Text>
-   <Text style={styles.Points}> {this.state.count} </Text>
-   <CountDown
-                          style = {styles.timer}
-
-                          until={45}
-                          timeToShow={['M', 'S']}
-                          //formate to show
-                          onFinish={() =>{this.onFinish(this.state.count)}}
-
-                          //onPress={() => alert('hello')}
-                          //on Press calls
-                          size={20}
-
-   />
-
-<View style={{paddingTop: 20}}>
-  <Text style={{color: 'black',fontSize:20, margin: 10, alignSelf:'center'}}> {this.state.textValue} </Text>
-  <Text style={{color: 'red',fontSize:12, alignSelf:'center'}}>{this.state.emptyTextValue}  </Text>
-  <TextInput  placeholder='Answer' onChangeText={(text) => this.setState({value:text})} value={this.state.value}  keyboardType='numeric'  style={styles.input} underlineColorAndroid={'transparent'} />
-  <Button title= 'Submit answer' onPress= {this.onPressButton}/>
-</View>
-
-   </ScreenContainer>
-   );
- }
-}
-export  class GeneralHard extends Component{
-
-  constructor(){
-    super();
-    this.state = { textValue: questions[questions.length], count: 0 }
-    this.onPressButton= this.onPressButton.bind(this);
-}
-
-onPressButton() {
-
-  const { value }  = this.state ;
-
-  if(value == ''){
-    this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
-  }else{
-      this.setState({emptyTextValue  : ''}) ;
+  onFinish = (count) => {
+    this.props.navigation.navigate('OptionsPage1');
+    Alert.alert(
+      "Time is over !",
+      "Points: "+count.toString(),
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
   }
-
-  this.setState({
-    count: this.state.count + 1 //galima prideti taskus sitaip
-
-  });
-  this.setState({    
-      textValue: questions[this.state.count%questions.length],//galima keisti klausimus sitaip
-      value:'',
-  })  
-}
-
-onFinish = (count) => {
-  this.props.navigation.navigate('OptionsPage1');
-  Alert.alert(
-    "Time is over !",
-    "Points: "+count.toString(),
-    [
-      {
-        text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel"
-      },
-      { text: "OK", onPress: () => console.log("OK Pressed") }
-    ]
-  );
-}
-
-
-render(){
   
-    return(
-    <ScreenContainer>
-   <ImageBackground source={image} style={styles.image}></ImageBackground>
-   <Text style={styles.Points}> Points </Text>
-   <Text style={styles.Points}> {this.state.count} </Text>
-   <CountDown
-                          style = {styles.timer}
-
-                          until={30}
-                          timeToShow={['M', 'S']}
-                          //formate to show
-                          onFinish={() =>{this.onFinish(this.state.count)}}
-
-                          //onPress={() => alert('hello')}
-                          //on Press calls
-                          size={20}
-
-   />
-
-<View style={{paddingTop: 20}}>
+  
+  render(){
+    
+      return(
+      <ScreenContainer>
+     <ImageBackground source={image} style={styles.image}></ImageBackground>
+     <Text style={styles.Points}> Points </Text>
+     <Text style={styles.Points}> {this.state.count} </Text>
+     <CountDown
+                            style = {styles.timer}
+  
+                            until={60}
+                            timeToShow={['M', 'S']}
+                            //formate to show
+                            onFinish={() =>{this.onFinish(this.state.count)}}
+  
+                            //onPress={() => alert('hello')}
+                            //on Press calls
+                            size={20}
+  
+     />
+  
+  <View style={{paddingTop: 20}}>
   <Text style={{color: 'black',fontSize:20, margin: 10, alignSelf:'center'}}> {this.state.textValue} </Text>
   <Text style={{color: 'red',fontSize:12, alignSelf:'center'}}>{this.state.emptyTextValue}  </Text>
-  <TextInput  placeholder='Answer' onChangeText={(text) => this.setState({value:text})} value={this.state.value}  keyboardType='numeric'  style={styles.input} underlineColorAndroid={'transparent'} />
+  <TextInput  placeholder='Answer' onChangeText={(text) => this.setState({value:text})} value={this.state.value}  keyboardType='default'  style={styles.input} underlineColorAndroid={'transparent'} />
   <Button title= 'Submit answer' onPress= {this.onPressButton}/>
- </View>
-
-   </ScreenContainer>
-   );
- }
-
-}
+  </View>
+  
+     </ScreenContainer>
+     );
+   }
+  
+  }
 
 
   const styles = StyleSheet.create({

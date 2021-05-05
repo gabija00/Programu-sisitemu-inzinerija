@@ -7,6 +7,7 @@ import {Register, HomePage, SettingsPage, ProfilePage} from "./Screens/HomePage"
 
 import {OptionsPage2Topics, OptionsPage2General, OptionsPage1} from "./Screens/OptionsPages";
 import {GeneralEasy, GeneralMedium, GeneralHard} from "./Screens/GeneralPages";
+import { TopicsBiology, TopicsHistory, TopicsLanguage, TopicsMath } from "./Screens/TopicsPages";
 
 const AuthStack = createStackNavigator(); 
 
@@ -22,6 +23,10 @@ export default () => (
              <AuthStack.Screen name = "GeneralEasy" component= {GeneralEasy}/>
              <AuthStack.Screen name = "GeneralMedium" component= {GeneralMedium}/>
              <AuthStack.Screen name = "GeneralHard" component= {GeneralHard}/>
+             <AuthStack.Screen name = "TopicsMath" component= {TopicsMath}/>
+             <AuthStack.Screen name = "TopicsHistory" component= {TopicsHistory}/>
+             <AuthStack.Screen name = "TopicsBiology" component= {TopicsBiology}/>
+             <AuthStack.Screen name = "TopicsLanguage" component= {TopicsLanguage}/>
              <AuthStack.Screen name = "ProfilePage" component= {ProfilePage}/>
         </AuthStack.Navigator>
     </NavigationContainer>

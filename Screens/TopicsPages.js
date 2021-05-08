@@ -9,38 +9,56 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
 
 
 const questionsMath = ['2*2?', '5+5?', '9-7?', '22+27?', 'sqrt9?', 'sqrt36?', 'sqrt25?'];
+const answerMath = ['4', '10', '2', '49', '3', '6', '5'];
+
 const questionsHistory = ['Kada vyko Žalgirio mūšis?', 'Kada baigėsi antrasis pasaulinis karas?', 'Kuriais metais vyko Mindaugo karūnavimas?',
  'Kada išleista pirmoji lietuviška knyga?', 'Kada buvo pirmą kartą paminėtas Lietuvos vardas?'];
+const answerHistory = ['1410', '1945', '1253', '1547', '1009'];
+
 const questionsBiology = ['Kaip vadinami gyvūnai, kurie ėda tik augalus?', 'Ar driežas yra roplys?', 'Kiek kojų turi voras?', 'Ar katės visada nusileidžia ant kojų?'];
+const answerBiology = ['žolėdžiai', 'Taip', '8', 'Ne'];
+
 const questionsLanguage = ['Įrašykite raidę: šviečia sa_lė', 'Įrašykite raidę: katė m_ega', 'Įrašykite raidę: šuo _aidžia', 'Įrašykite raidę: vaikai bė_gioja'];
+const answerLanguage = ['u', 'i', 'ž', ''];
 
 export  class TopicsMath extends Component{
 
-constructor(){
+  constructor(){
     super();
-    this.state = { textValue: questionsMath[questionsMath.length], count: 0 }
+    this.state = { textValue: questionsMath[0%questionsMath.length], count: 0, value : '' , clicks:0}
     this.onPressButton= this.onPressButton.bind(this);
 }
 
+
+
 onPressButton() {
 
-  const { value }  = this.state ;
+  const { value, clicks }  = this.state ;
 
   if(value == ''){
     this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
-  }else{
-      this.setState({emptyTextValue  : ''}) ;
   }
-
+  else{
+      
+      if (value == answerMath[this.state.clicks%questionsMath.length])
+      {
+        this.setState({ count: this.state.count + 1});
+        this.setState({emptyTextValue : ''}) ;
+      }
+      else{
+        this.setState({emptyTextValue : 'Wrong'}) ;
+      }
+     // this.setState({emptyTextValue  : ''}) ;
+  }
   this.setState({
-    count: this.state.count + 1 //galima prideti taskus sitaip
-
-  });
+    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+  }); 
   this.setState({    
-      textValue: questionsMath[this.state.count%questionsMath.length],//galima keisti klausimus sitaip
+      textValue: questionsMath[(this.state.clicks+1)%questionsMath.length],//galima keisti klausimus sitaip
       value:'',
   })  
 }
+
 
 onFinish = (count) => {
   this.props.navigation.navigate('OptionsPage1');
@@ -96,26 +114,36 @@ export  class TopicsHistory extends Component{
 
   constructor(){
     super();
-    this.state = { textValue: questionsHistory[questionsHistory.length], count: 0 }
+    this.state = { textValue: questionsHistory[0%questionsHistory.length], count: 0, value : '' , clicks:0}
     this.onPressButton= this.onPressButton.bind(this);
 }
 
+
+
 onPressButton() {
 
-  const { value }  = this.state ;
+  const { value, clicks }  = this.state ;
 
   if(value == ''){
     this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
-  }else{
-      this.setState({emptyTextValue  : ''}) ;
   }
-
+  else{
+      
+      if (value == answerHistory[this.state.clicks%questionsHistory.length])
+      {
+        this.setState({ count: this.state.count + 1});
+        this.setState({emptyTextValue : ''}) ;
+      }
+      else{
+        this.setState({emptyTextValue : 'Wrong'}) ;
+      }
+     // this.setState({emptyTextValue  : ''}) ;
+  }
   this.setState({
-    count: this.state.count + 1 //galima prideti taskus sitaip
-
-  });
+    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+  }); 
   this.setState({    
-      textValue: questionsHistory[this.state.count%questionsHistory.length],//galima keisti klausimus sitaip
+      textValue: questionsHistory[(this.state.clicks+1)%questionsHistory.length],//galima keisti klausimus sitaip
       value:'',
   })  
 }
@@ -175,26 +203,36 @@ export  class TopicsBiology extends Component{
 
   constructor(){
     super();
-    this.state = { textValue: questionsBiology[questionsBiology.length], count: 0 }
+    this.state = { textValue: questionsBiology[0%questionsBiology.length], count: 0, value : '' , clicks:0}
     this.onPressButton= this.onPressButton.bind(this);
 }
 
+
+
 onPressButton() {
 
-  const { value }  = this.state ;
+  const { value, clicks }  = this.state ;
 
   if(value == ''){
     this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
-  }else{
-      this.setState({emptyTextValue  : ''}) ;
   }
-
+  else{
+      
+      if (value == answerBiology[this.state.clicks%questionsBiology.length])
+      {
+        this.setState({ count: this.state.count + 1});
+        this.setState({emptyTextValue : ''}) ;
+      }
+      else{
+        this.setState({emptyTextValue : 'Wrong'}) ;
+      }
+     // this.setState({emptyTextValue  : ''}) ;
+  }
   this.setState({
-    count: this.state.count + 1 //galima prideti taskus sitaip
-
-  });
+    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+  }); 
   this.setState({    
-      textValue: questionsBiology[this.state.count%questionsBiology.length],//galima keisti klausimus sitaip
+      textValue: questionsBiology[(this.state.clicks+1)%questionsBiology.length],//galima keisti klausimus sitaip
       value:'',
   })  
 }
@@ -252,31 +290,39 @@ render(){
 
 export  class TopicsLanguage extends Component{
 
-    constructor(){
-      super();
-      this.state = { textValue: questionsLanguage[questionsLanguage.length], count: 0 }
-      this.onPressButton= this.onPressButton.bind(this);
-  }
-  
-  onPressButton() {
+  constructor(){
+    super();
+    this.state = { textValue: questionsLanguage[0%questionsLanguage.length], count: 0 , value : '', clicks:0}
+    this.onPressButton= this.onPressButton.bind(this);
+}
 
-    const { value }  = this.state ;
-  
-    if(value == ''){
-      this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
-    }else{
-        this.setState({emptyTextValue  : ''}) ;
-    }
-  
-    this.setState({
-      count: this.state.count + 1 //galima prideti taskus sitaip
-  
-    });
-    this.setState({    
-        textValue: questionsLanguage[this.state.count%questionsLanguage.length],//galima keisti klausimus sitaip
-        value:'',
-    })  
+onPressButton() {
+
+  const { value, clicks }  = this.state ;
+
+  if(value == ''){
+    this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
   }
+  else{
+      
+      if (value == answerLanguage[this.state.clicks%questionsLanguage.length])
+      {
+        this.setState({ count: this.state.count + 1});
+        this.setState({emptyTextValue : ''}) ;
+      }
+      else{
+        this.setState({emptyTextValue : 'Wrong'}) ;
+      }
+     // this.setState({emptyTextValue  : ''}) ;
+  }
+  this.setState({
+    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+  }); 
+  this.setState({    
+      textValue: questionsLanguage[(this.state.clicks+1)%questionsLanguage.length],//galima keisti klausimus sitaip
+      value:'',
+  })  
+}
 
   onFinish = (count) => {
     this.props.navigation.navigate('OptionsPage1');

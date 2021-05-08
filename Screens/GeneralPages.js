@@ -9,35 +9,43 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
 
 
 const questions = ['2*2?', '5+5?', '9-7?', '22+27?', 'sqrt9?', 'sqrt36?', 'sqrt25?'];
+const answer = ['4', '10', '2', '49', '3', '6', '5'];
 
 export  class GeneralEasy extends Component{
 
-constructor(){
+  constructor(){
     super();
-    this.state = { textValue: questions[questions.length], count: 0 }
+    this.state = { textValue: questions[0%questions.length], count: 0, value : '', clicks:0}
     this.onPressButton= this.onPressButton.bind(this);
 }
 
 onPressButton() {
 
-  const { value }  = this.state ;
+  const { value, clicks }  = this.state ;
 
   if(value == ''){
     this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
-  }else{
-      this.setState({emptyTextValue  : ''}) ;
   }
-
+  else{
+      
+      if (value == answer[this.state.clicks%questions.length])
+      {
+        this.setState({ count: this.state.count + 1});
+        this.setState({emptyTextValue : ''}) ;
+      }
+      else{
+        this.setState({emptyTextValue : 'Wrong'}) ;
+      }
+     // this.setState({emptyTextValue  : ''}) ;
+  }
   this.setState({
-    count: this.state.count + 1 //galima prideti taskus sitaip
-
-  });
+    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+  }); 
   this.setState({    
-      textValue: questions[this.state.count%questions.length],//galima keisti klausimus sitaip
+      textValue: questions[(this.state.clicks+1)%questions.length],//galima keisti klausimus sitaip
       value:'',
   })  
 }
-
 onFinish = (count) => {
   this.props.navigation.navigate('OptionsPage1');
   Alert.alert(
@@ -92,26 +100,34 @@ export  class GeneralMedium extends Component{
 
   constructor(){
     super();
-    this.state = { textValue: questions[questions.length], count: 0 }
+    this.state = { textValue: questions[0%questions.length], count: 0, value : '', clicks:0}
     this.onPressButton= this.onPressButton.bind(this);
 }
 
 onPressButton() {
 
-  const { value }  = this.state ;
+  const { value, clicks }  = this.state ;
 
   if(value == ''){
     this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
-  }else{
-      this.setState({emptyTextValue  : ''}) ;
   }
-
+  else{
+      
+      if (value == answer[this.state.clicks%questions.length])
+      {
+        this.setState({ count: this.state.count + 1});
+        this.setState({emptyTextValue : ''}) ;
+      }
+      else{
+        this.setState({emptyTextValue : 'Wrong'}) ;
+      }
+     // this.setState({emptyTextValue  : ''}) ;
+  }
   this.setState({
-    count: this.state.count + 1 //galima prideti taskus sitaip
-
-  });
+    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+  }); 
   this.setState({    
-      textValue: questions[this.state.count%questions.length],//galima keisti klausimus sitaip
+      textValue: questions[(this.state.clicks+1)%questions.length],//galima keisti klausimus sitaip
       value:'',
   })  
 }
@@ -169,26 +185,34 @@ export  class GeneralHard extends Component{
 
   constructor(){
     super();
-    this.state = { textValue: questions[questions.length], count: 0 }
+    this.state = { textValue: questions[0%questions.length], count: 0, value : '', clicks:0}
     this.onPressButton= this.onPressButton.bind(this);
 }
 
 onPressButton() {
 
-  const { value }  = this.state ;
+  const { value, clicks }  = this.state ;
 
   if(value == ''){
     this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
-  }else{
-      this.setState({emptyTextValue  : ''}) ;
   }
-
+  else{
+      
+      if (value == answer[this.state.clicks%questions.length])
+      {
+        this.setState({ count: this.state.count + 1});
+        this.setState({emptyTextValue : ''}) ;
+      }
+      else{
+        this.setState({emptyTextValue : 'Wrong'}) ;
+      }
+     // this.setState({emptyTextValue  : ''}) ;
+  }
   this.setState({
-    count: this.state.count + 1 //galima prideti taskus sitaip
-
-  });
+    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+  }); 
   this.setState({    
-      textValue: questions[this.state.count%questions.length],//galima keisti klausimus sitaip
+      textValue: questions[(this.state.clicks+1)%questions.length],//galima keisti klausimus sitaip
       value:'',
   })  
 }

@@ -21,6 +21,23 @@ const answerBiology = ['žolėdžiai', 'Taip', '8', 'Ne'];
 const questionsLanguage = ['Įrašykite raidę: šviečia sa_lė', 'Įrašykite raidę: katė m_ega', 'Įrašykite raidę: šuo _aidžia', 'Įrašykite raidę: vaikai bė_gioja'];
 const answerLanguage = ['u', 'i', 'ž', ''];
 
+export var skk = 0;
+export function easyPoints(variable) 
+{ 
+  
+  if (variable > 0)
+  {
+    skk = variable;
+    return (0);
+  }
+ 
+  else
+ {
+    return (0);
+
+ }
+}
+
 export  class TopicsMath extends Component{
 
   constructor(){
@@ -61,6 +78,7 @@ onPressButton() {
 
 
 onFinish = (count) => {
+  easyPoints(count);
   this.props.navigation.navigate('OptionsPage1');
   Alert.alert(
     "Time is over !",
@@ -149,6 +167,7 @@ onPressButton() {
 }
 
 onFinish = (count) => {
+  easyPoints(count);
   this.props.navigation.navigate('OptionsPage1');
   Alert.alert(
     "Time is over !",
@@ -238,6 +257,7 @@ onPressButton() {
 }
 
 onFinish = (count) => {
+  easyPoints(count);
   this.props.navigation.navigate('OptionsPage1');
   Alert.alert(
     "Time is over !",
@@ -325,6 +345,7 @@ onPressButton() {
 }
 
   onFinish = (count) => {
+    easyPoints(count);
     this.props.navigation.navigate('OptionsPage1');
     Alert.alert(
       "Time is over !",

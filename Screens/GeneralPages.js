@@ -8,7 +8,7 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
 
 const questions = ['2*2?', '5+5?', '9-7?', '22+27?', 'sqrt9?', 'sqrt36?', 'sqrt25?'];
 const answer = ['4', '10', '2', '49', '3', '6', '5'];
-export var sk = null;
+export var sk = 0;
 export function easyPoints(variable) 
 { 
   
@@ -66,8 +66,7 @@ onPressButton() {
 onFinish = (count) => {
   easyPoints(count);
   this.props.navigation.navigate('OptionsPage1');
-  //easyPoints = count;
-  //this.forceUpdate(ProfilePage);
+  
   Alert.alert(
     "Time is over !",
     "Points: "+count.toString(),

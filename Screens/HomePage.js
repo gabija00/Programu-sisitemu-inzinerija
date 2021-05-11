@@ -5,6 +5,7 @@ import {Overlay, SafeAreaView, StyleSheet, Text, View,Button,TextInput,Touchable
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {easyPoints, sk} from './GeneralPages';
+import {skk} from './TopicsPages';
 var count = 0;
 
 const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf599b8c1d78bda7f.jpg" };
@@ -15,11 +16,27 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
     const [name, setName] = useState('');
     const checkTextInput = () => {
       //Check for the Name TextInput
+      
       if (!name.trim()) {
-        alert('Please Enter Name');
+        alert('Please Enter Name', 
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+        );
         return;
       }
+      else
+      {
+        navigation.navigate("HomePage", {name});
+
+      }
     };
+    
 
     const nameInputHandler = (enteredText) => {
       setName(enteredText);
@@ -45,7 +62,7 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
       <View style={styles.button1}>
         
         {/* Nusiunčia vardą į homepage ir nueina į jį */}
-        <Button title="Next" onPress= {() => { checkTextInput(), navigation.navigate("HomePage", {name})} } color= "#c717fc"/>
+        <Button title="Next" onPress= {() => { checkTextInput() } } color= "#c717fc"/>
         </View>
         
       </ScreenContainer>
@@ -77,7 +94,7 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
 
     export const ProfilePage =  ({ navigation, route}) => {
       
-       var temp = count + sk;
+       var temp = count + skk + sk;
        
        count =temp;
        
@@ -87,7 +104,7 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
                 <ImageBackground source={image} style={styles.image}></ImageBackground>
 
                 <Text style= {styles.headerProfile}> {route.params.name}</Text>
-                <Text style= {styles.headerTextResults}>{temp}</Text>
+                <Text style= {styles.headerTextResults}>All points: {temp}</Text>
                 
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(matematika): </Text>
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(istorija): </Text>

@@ -2,13 +2,16 @@ import 'react-native-gesture-handler';
 import { ScreenContainer } from "react-native-screens";
 import React ,{useState, useEffect} from 'react';
 import {Overlay, SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions,Pressable } from 'react-native';
-import CountDown from 'react-native-countdown-component';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {easyPoints, sk} from './GeneralPages';
+var count = 0;
 
 const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf599b8c1d78bda7f.jpg" };
-difficultyLevel = 0;//sitas bus reikalingas skaiciuojant
 
+ 
   export const Register = ({ navigation} ) => {
-
+    
     const [name, setName] = useState('');
     const checkTextInput = () => {
       //Check for the Name TextInput
@@ -16,11 +19,6 @@ difficultyLevel = 0;//sitas bus reikalingas skaiciuojant
         alert('Please Enter Name');
         return;
       }
-      
-      //Checked Successfully
-      //Do whatever you want
-      //navigation.navigate("HomePage", {name});
-      //alert('Success');
     };
 
     const nameInputHandler = (enteredText) => {
@@ -77,12 +75,20 @@ difficultyLevel = 0;//sitas bus reikalingas skaiciuojant
   }
 
 
-    export const ProfilePage = ({ navigation, route}) => {
+    export const ProfilePage =  ({ navigation, route}) => {
+      
+       var temp = count + sk;
+       
+       count =temp;
+       
+        
        return (
          <ScreenContainer>
                 <ImageBackground source={image} style={styles.image}></ImageBackground>
 
                 <Text style= {styles.headerProfile}> {route.params.name}</Text>
+                <Text style= {styles.headerTextResults}>{temp}</Text>
+                
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(matematika): </Text>
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(istorija): </Text>
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(biologija): </Text>
@@ -104,6 +110,7 @@ difficultyLevel = 0;//sitas bus reikalingas skaiciuojant
                       </ScreenContainer>
                     );
    }
+   
 
 
 

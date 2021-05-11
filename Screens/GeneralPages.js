@@ -6,13 +6,27 @@ import CountDown from 'react-native-countdown-component';
 
 const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf599b8c1d78bda7f.jpg" };
 
-
-
 const questions = ['2*2?', '5+5?', '9-7?', '22+27?', 'sqrt9?', 'sqrt36?', 'sqrt25?'];
 const answer = ['4', '10', '2', '49', '3', '6', '5'];
+export var sk = null;
+export function easyPoints(variable) 
+{ 
+  
+  if (variable > 0)
+  {
+    sk = variable;
+    return (0);
+  }
+ 
+  else
+ {
+    return (0);
+
+ }
+} 
 
 export  class GeneralEasy extends Component{
-
+  
   constructor(){
     super();
     this.state = { textValue: questions[0%questions.length], count: 0, value : '', clicks:0}
@@ -20,9 +34,10 @@ export  class GeneralEasy extends Component{
 }
 
 onPressButton() {
-
+  
+  
   const { value, clicks }  = this.state ;
-
+  
   if(value == ''){
     this.setState({emptyTextValue : 'Answer blank is empty, points were not addead'}) ;
   }
@@ -46,8 +61,13 @@ onPressButton() {
       value:'',
   })  
 }
+
+ 
 onFinish = (count) => {
+  easyPoints(count);
   this.props.navigation.navigate('OptionsPage1');
+  //easyPoints = count;
+  //this.forceUpdate(ProfilePage);
   Alert.alert(
     "Time is over !",
     "Points: "+count.toString(),
@@ -60,6 +80,7 @@ onFinish = (count) => {
       { text: "OK", onPress: () => console.log("OK Pressed") }
     ]
   );
+  
 }
 
 
@@ -134,6 +155,7 @@ onPressButton() {
 
 onFinish = (count) => {
   this.props.navigation.navigate('OptionsPage1');
+  easyPoints(count);
   Alert.alert(
     "Time is over !",
     "Points: "+count.toString(),
@@ -219,6 +241,7 @@ onPressButton() {
 
 onFinish = (count) => {
   this.props.navigation.navigate('OptionsPage1');
+  easyPoints(count);
   Alert.alert(
     "Time is over !",
     "Points: "+count.toString(),

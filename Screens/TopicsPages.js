@@ -20,23 +20,30 @@ const answerBiology = ['žolėdžiai', 'Taip', '8', 'Ne'];
 
 const questionsLanguage = ['Įrašykite raidę: šviečia sa_lė', 'Įrašykite raidę: katė m_ega', 'Įrašykite raidę: šuo _aidžia', 'Įrašykite raidę: vaikai bė_gioja'];
 const answerLanguage = ['u', 'i', 'ž', ''];
+export class Points {
+  constructor (sk) {
+      this.sk = sk;
+  }
 
-export var skk = 0;
+  get_sk () {
+      return this.sk;
+  }
+
+  set_sk (sk) {
+      this.sk = sk;
+  }
+}
+export var topicsP = new Points (0);
+
+export var math = new Points (0);
+export var history = new Points (0);
+export var biology = new Points (0);
+export var language = new Points (0);
+
 export function easyPoints(variable) 
 { 
-  
-  if (variable > 0)
-  {
-    skk = variable;
-    return (0);
-  }
- 
-  else
- {
-    return (0);
-
- }
-}
+  topicsP.set_sk(topicsP.get_sk() + variable);
+} 
 
 export  class TopicsMath extends Component{
 
@@ -79,6 +86,7 @@ onPressButton() {
 
 onFinish = (count) => {
   easyPoints(count);
+  math.set_sk(math.get_sk() + count);
   this.props.navigation.navigate('OptionsPage1');
   Alert.alert(
     "Time is over !",
@@ -168,6 +176,7 @@ onPressButton() {
 
 onFinish = (count) => {
   easyPoints(count);
+  history.set_sk(history.get_sk() + count);
   this.props.navigation.navigate('OptionsPage1');
   Alert.alert(
     "Time is over !",
@@ -258,6 +267,7 @@ onPressButton() {
 
 onFinish = (count) => {
   easyPoints(count);
+  biology.set_sk(biology.get_sk() + count);
   this.props.navigation.navigate('OptionsPage1');
   Alert.alert(
     "Time is over !",
@@ -346,6 +356,7 @@ onPressButton() {
 
   onFinish = (count) => {
     easyPoints(count);
+    language.set_sk(language.get_sk() + count);
     this.props.navigation.navigate('OptionsPage1');
     Alert.alert(
       "Time is over !",

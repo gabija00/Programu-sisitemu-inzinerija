@@ -8,23 +8,26 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
 
 const questions = ['2*2?', '5+5?', '9-7?', '22+27?', 'sqrt9?', 'sqrt36?', 'sqrt25?'];
 const answer = ['4', '10', '2', '49', '3', '6', '5'];
-export var sk = 0;
+//export var sk = 0;
+
+export class Points {
+  constructor (sk) {
+      this.sk = sk;
+  }
+
+  get_sk () {
+      return this.sk;
+  }
+
+  set_sk (sk) {
+      this.sk = sk;
+  }
+}
+export var pp = new Points (0);
 export function easyPoints(variable) 
 { 
-  
-  if (variable > 0)
-  {
-    sk = variable;
-    return (0);
-  }
- 
-  else
- {
-    return (0);
-
- }
+  pp.set_sk(pp.get_sk() + variable);
 } 
-
 export  class GeneralEasy extends Component{
   
   constructor(){

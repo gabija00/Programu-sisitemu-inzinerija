@@ -4,9 +4,13 @@ import React ,{useState, useEffect} from 'react';
 import {Overlay, SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions,Pressable } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {easyPoints, sk} from './GeneralPages';
-import {skk} from './TopicsPages';
+import {pp} from './GeneralPages';
+import {topicsP, math, history, biology, language} from './TopicsPages';
 var count = 0;
+var mma = 0;
+var hhis = 0;
+var bbio = 0;
+var llan = 0;
 
 const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf599b8c1d78bda7f.jpg" };
 
@@ -94,7 +98,27 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
 
     export const ProfilePage =  ({ navigation, route}) => {
       
-       var temp = count + skk + sk;
+     
+       var temp = count + topicsP.get_sk() + pp.get_sk();
+       pp.set_sk(0);
+       topicsP.set_sk(0); 
+
+       var mm = mma + math.get_sk();
+       math.set_sk(0);
+       mma = mm;
+
+       var hh = hhis + history.get_sk();
+       history.set_sk(0);
+       hhis = hh;
+
+       var bb = bbio + biology.get_sk();
+       biology.set_sk(0);
+       bbio = bb;
+
+       var ll = llan + language.get_sk();
+       language.set_sk(0);
+       llan = ll;
+       
        
        count =temp;
        
@@ -106,10 +130,10 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
                 <Text style= {styles.headerProfile}> {route.params.name}</Text>
                 <Text style= {styles.headerTextResults}>All points: {temp}</Text>
                 
-                <Text style= {styles.headerTextResults}>Geriausias rezultatas(matematika): </Text>
-                <Text style= {styles.headerTextResults}>Geriausias rezultatas(istorija): </Text>
-                <Text style= {styles.headerTextResults}>Geriausias rezultatas(biologija): </Text>
-                <Text style= {styles.headerTextResults}>Geriausias rezultatas(kalbos): </Text>
+                <Text style= {styles.headerTextResults}>Geriausias rezultatas(matematika): {mm}</Text>
+                <Text style= {styles.headerTextResults}>Geriausias rezultatas(istorija): {hh}</Text>
+                <Text style= {styles.headerTextResults}>Geriausias rezultatas(biologija): {bb}</Text>
+                <Text style= {styles.headerTextResults}>Geriausias rezultatas(kalbos): {ll}</Text>
                 <View style={styles.button1}>
                 <Button title="Go back" onPress={() => navigation.goBack()} />
                 </View>

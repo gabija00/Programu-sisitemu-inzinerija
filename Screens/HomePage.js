@@ -1,9 +1,8 @@
 import 'react-native-gesture-handler';
 import { ScreenContainer } from "react-native-screens";
 import React ,{useState, useEffect} from 'react';
-import {Overlay, SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions,Pressable } from 'react-native';
+import { StyleSheet, Text, View,Button,TextInput,ImageBackground,Dimensions,Pressable } from 'react-native';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {pp} from './GeneralPages';
 import {topicsP, math, history, biology, language} from './TopicsPages';
 var count = 0;
@@ -37,7 +36,6 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
       else
       {
         navigation.navigate("HomePage", {name});
-
       }
     };
     
@@ -61,20 +59,15 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
       underlineColorAndroid={'transparent'} 
       onChangeText={nameInputHandler}
           
-      
       />
       <View style={styles.button1}>
-        
-        {/* Nusiunčia vardą į homepage ir nueina į jį */}
         <Button title="Next" onPress= {() => { checkTextInput() } } color= "#c717fc"/>
         </View>
-        
       </ScreenContainer>
       </View>
     );
   }
 
-  // jei i kitus page'us noresit paduot varda, tai route irasykit prie navigation ir tada naudokit kaip  route.params.name
   export function HomePage  ({ navigation, route})  {
     const name = route.params.name;
     
@@ -128,8 +121,7 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
                 <ImageBackground source={image} style={styles.image}></ImageBackground>
 
                 <Text style= {styles.headerProfile}> {route.params.name}</Text>
-                <Text style= {styles.headerTextResults}>All points: {temp}</Text>
-                
+                <Text style= {styles.headerTextResults}>All points: {temp}</Text>                
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(matematika): {mm}</Text>
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(istorija): {hh}</Text>
                 <Text style= {styles.headerTextResults}>Geriausias rezultatas(biologija): {bb}</Text>

@@ -1,14 +1,14 @@
 import 'react-native-gesture-handler';
 import { ScreenContainer } from "react-native-screens";
 import React ,{useState, useEffect, Component} from 'react';
-import {SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions, Alert } from 'react-native';
+import {StyleSheet, Text, View,Button,TextInput,ImageBackground,Dimensions, Alert } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 
 const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf599b8c1d78bda7f.jpg" };
 
 const questions = ['2*2?', '5+5?', '9-7?', '22+27?', 'sqrt9?', 'sqrt36?', 'sqrt25?'];
 const answer = ['4', '10', '2', '49', '3', '6', '5'];
-//export var sk = 0;
+
 
 export class Points {
   constructor (sk) {
@@ -54,13 +54,12 @@ onPressButton() {
       else{
         this.setState({emptyTextValue : 'Wrong'}) ;
       }
-     // this.setState({emptyTextValue  : ''}) ;
   }
   this.setState({
-    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+    clicks: this.state.clicks + 1 
   }); 
   this.setState({    
-      textValue: questions[(this.state.clicks+1)%questions.length],//galima keisti klausimus sitaip
+      textValue: questions[(this.state.clicks+1)%questions.length],
       value:'',
   })  
 }
@@ -94,17 +93,11 @@ render(){
    <Text style={styles.Points}> Points </Text>
    <Text style={styles.Points}> {this.state.count} </Text>
    <CountDown
-                          style = {styles.timer}
-
-                          until={60}
-                          timeToShow={['M', 'S']}
-                          //formate to show
-                          onFinish={() =>{this.onFinish(this.state.count)}}
-
-                          //onPress={() => alert('hello')}
-                          //on Press calls
-                          size={20}
-
+     style = {styles.timer}
+     until={60}
+     timeToShow={['M', 'S']}
+     onFinish={() =>{this.onFinish(this.state.count)}}
+     size={20}
    />
 
 <View style={{paddingTop: 20}}>
@@ -117,7 +110,6 @@ render(){
    </ScreenContainer>
    );
  }
-
 }
 export  class GeneralMedium extends Component{
 
@@ -144,13 +136,12 @@ onPressButton() {
       else{
         this.setState({emptyTextValue : 'Wrong'}) ;
       }
-     // this.setState({emptyTextValue  : ''}) ;
   }
   this.setState({
-    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+    clicks: this.state.clicks + 1 
   }); 
   this.setState({    
-      textValue: questions[(this.state.clicks+1)%questions.length],//galima keisti klausimus sitaip
+      textValue: questions[(this.state.clicks+1)%questions.length],
       value:'',
   })  
 }
@@ -181,17 +172,11 @@ render(){
    <Text style={styles.Points}> Points </Text>
    <Text style={styles.Points}> {this.state.count} </Text>
    <CountDown
-                          style = {styles.timer}
-
-                          until={45}
-                          timeToShow={['M', 'S']}
-                          //formate to show
-                          onFinish={() =>{this.onFinish(this.state.count)}}
-
-                          //onPress={() => alert('hello')}
-                          //on Press calls
-                          size={20}
-
+     style = {styles.timer}
+     until={45}
+     timeToShow={['M', 'S']}
+     onFinish={() =>{this.onFinish(this.state.count)}}
+     size={20}
    />
 
 <View style={{paddingTop: 20}}>
@@ -230,13 +215,12 @@ onPressButton() {
       else{
         this.setState({emptyTextValue : 'Wrong'}) ;
       }
-     // this.setState({emptyTextValue  : ''}) ;
   }
   this.setState({
-    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+    clicks: this.state.clicks + 1 
   }); 
   this.setState({    
-      textValue: questions[(this.state.clicks+1)%questions.length],//galima keisti klausimus sitaip
+      textValue: questions[(this.state.clicks+1)%questions.length],
       value:'',
   })  
 }
@@ -267,17 +251,11 @@ render(){
    <Text style={styles.Points}> Points </Text>
    <Text style={styles.Points}> {this.state.count} </Text>
    <CountDown
-                          style = {styles.timer}
-
-                          until={30}
-                          timeToShow={['M', 'S']}
-                          //formate to show
-                          onFinish={() =>{this.onFinish(this.state.count)}}
-
-                          //onPress={() => alert('hello')}
-                          //on Press calls
-                          size={20}
-
+      style = {styles.timer}
+      until={30}
+      timeToShow={['M', 'S']}
+      onFinish={() =>{this.onFinish(this.state.count)}}
+      size={20}
    />
 
 <View style={{paddingTop: 20}}>

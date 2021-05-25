@@ -1,12 +1,10 @@
 import 'react-native-gesture-handler';
 import { ScreenContainer } from "react-native-screens";
 import React ,{useState, useEffect, Component} from 'react';
-import {SafeAreaView, StyleSheet, Text, View,Button,TextInput,TouchableOpacity,ImageBackground,Dimensions, Alert } from 'react-native';
+import { StyleSheet, Text, View,Button,TextInput,ImageBackground,Dimensions, Alert } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 
 const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf599b8c1d78bda7f.jpg" };
-
-
 
 const questionsMath = ['2*2?', '5+5?', '9-7?', '22+27?', 'sqrt9?', 'sqrt36?', 'sqrt25?'];
 const answerMath = ['4', '10', '2', '49', '3', '6', '5'];
@@ -72,13 +70,12 @@ onPressButton() {
       else{
         this.setState({emptyTextValue : 'Wrong'}) ;
       }
-     // this.setState({emptyTextValue  : ''}) ;
   }
   this.setState({
-    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+    clicks: this.state.clicks + 1
   }); 
   this.setState({    
-      textValue: questionsMath[(this.state.clicks+1)%questionsMath.length],//galima keisti klausimus sitaip
+      textValue: questionsMath[(this.state.clicks+1)%questionsMath.length],
       value:'',
   })  
 }
@@ -111,17 +108,11 @@ render(){
    <Text style={styles.Points}> Points </Text>
    <Text style={styles.Points}> {this.state.count} </Text>
    <CountDown
-                          style = {styles.timer}
-
-                          until={60}
-                          timeToShow={['M', 'S']}
-                          //formate to show
-                          onFinish={() =>{this.onFinish(this.state.count)}}
-
-                          //onPress={() => alert('hello')}
-                          //on Press calls
-                          size={20}
-
+      style = {styles.timer}
+      until={60}
+      timeToShow={['M', 'S']}
+      onFinish={() =>{this.onFinish(this.state.count)}}
+      size={20}
    />
  
  <View style={{paddingTop: 20}}>
@@ -163,13 +154,12 @@ onPressButton() {
       else{
         this.setState({emptyTextValue : 'Wrong'}) ;
       }
-     // this.setState({emptyTextValue  : ''}) ;
   }
   this.setState({
-    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+    clicks: this.state.clicks + 1
   }); 
   this.setState({    
-      textValue: questionsHistory[(this.state.clicks+1)%questionsHistory.length],//galima keisti klausimus sitaip
+      textValue: questionsHistory[(this.state.clicks+1)%questionsHistory.length],
       value:'',
   })  
 }
@@ -201,17 +191,11 @@ render(){
    <Text style={styles.Points}> Points </Text>
    <Text style={styles.Points}> {this.state.count} </Text>
    <CountDown
-                          style = {styles.timer}
-
-                          until={60}
-                          timeToShow={['M', 'S']}                         
-                          //formate to show
-                          onFinish={() =>{this.onFinish(this.state.count)}}
-
-                          //onPress={() => alert('hello')}
-                          //on Press calls
-                          size={20}
-
+      style = {styles.timer}
+      until={60}
+      timeToShow={['M', 'S']}   
+      onFinish={() =>{this.onFinish(this.state.count)}}
+      size={20}
    />
 
 <View style={{paddingTop: 20}}>
@@ -224,7 +208,6 @@ render(){
    </ScreenContainer>
    );
  }
-
 }
 
 export  class TopicsBiology extends Component{
@@ -234,8 +217,6 @@ export  class TopicsBiology extends Component{
     this.state = { textValue: questionsBiology[0%questionsBiology.length], count: 0, value : '' , clicks:0}
     this.onPressButton= this.onPressButton.bind(this);
 }
-
-
 
 onPressButton() {
 
@@ -254,13 +235,12 @@ onPressButton() {
       else{
         this.setState({emptyTextValue : 'Wrong'}) ;
       }
-     // this.setState({emptyTextValue  : ''}) ;
   }
   this.setState({
-    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+    clicks: this.state.clicks + 1 
   }); 
   this.setState({    
-      textValue: questionsBiology[(this.state.clicks+1)%questionsBiology.length],//galima keisti klausimus sitaip
+      textValue: questionsBiology[(this.state.clicks+1)%questionsBiology.length],
       value:'',
   })  
 }
@@ -292,17 +272,11 @@ render(){
    <Text style={styles.Points}> Points </Text>
    <Text style={styles.Points}> {this.state.count} </Text>
    <CountDown
-                          style = {styles.timer}
-
-                          until={60}
-                          timeToShow={['M', 'S']}
-                          //formate to show
-                          onFinish={() =>{this.onFinish(this.state.count)}}
-
-                          //onPress={() => alert('hello')}
-                          //on Press calls
-                          size={20}
-
+      style = {styles.timer}
+      until={60}
+      timeToShow={['M', 'S']}
+      onFinish={() =>{this.onFinish(this.state.count)}}
+      size={20}
    />
 
 <View style={{paddingTop: 20}}>
@@ -343,13 +317,12 @@ onPressButton() {
       else{
         this.setState({emptyTextValue : 'Wrong'}) ;
       }
-     // this.setState({emptyTextValue  : ''}) ;
   }
   this.setState({
-    clicks: this.state.clicks + 1 //galima prideti taskus sitaip
+    clicks: this.state.clicks + 1 
   }); 
   this.setState({    
-      textValue: questionsLanguage[(this.state.clicks+1)%questionsLanguage.length],//galima keisti klausimus sitaip
+      textValue: questionsLanguage[(this.state.clicks+1)%questionsLanguage.length],
       value:'',
   })  
 }
@@ -381,17 +354,11 @@ onPressButton() {
      <Text style={styles.Points}> Points </Text>
      <Text style={styles.Points}> {this.state.count} </Text>
      <CountDown
-                            style = {styles.timer}
-  
-                            until={60}
-                            timeToShow={['M', 'S']}
-                            //formate to show
-                            onFinish={() =>{this.onFinish(this.state.count)}}
-  
-                            //onPress={() => alert('hello')}
-                            //on Press calls
-                            size={20}
-  
+        style = {styles.timer}
+        until={60}
+        timeToShow={['M', 'S']}
+        onFinish={() =>{this.onFinish(this.state.count)}}
+        size={20}  
      />
   
   <View style={{paddingTop: 20}}>
@@ -404,7 +371,6 @@ onPressButton() {
      </ScreenContainer>
      );
    }
-  
   }
 
 

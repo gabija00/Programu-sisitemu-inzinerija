@@ -1,7 +1,9 @@
 import 'react-native-gesture-handler';
 import { ScreenContainer } from "react-native-screens";
 import React ,{useState, useEffect} from 'react';
-import { StyleSheet, Text, View,Button,TextInput,ImageBackground,Dimensions,Pressable } from 'react-native';
+import { StyleSheet, Text, View,Image,  Button,TouchableOpacity,TextInput,ImageBackground,Dimensions,Pressable } from 'react-native';
+
+import { Audio } from 'expo-av';
 
 import {pp} from './GeneralPages';
 import {topicsP, math, history, biology, language} from './TopicsPages';
@@ -21,7 +23,7 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
       //Check for the Name TextInput
       
       if (!name.trim()) {
-        alert('Please Enter Name', 
+        alert('Please enter name', 
         [
           {
             text: "Cancel",
@@ -52,7 +54,7 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
       <View >
       <ScreenContainer>
       <ImageBackground source={image} style={styles.image}></ImageBackground>
-      <Text style= {styles.header}>Prisijunkite</Text>
+      <Text style= {styles.header}>Write name</Text>
       <TextInput
       placeholder="Name"
       style={styles.input} 
@@ -135,7 +137,9 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
 
    export const SettingsPage = ({ navigation}) => {
     function a (value) {
+      Audio.setIsEnabledAsync(true);
       const { sound } =  Audio.Sound.createAsync(require('./Day.mp3'), { shouldPlay:value,volume:1.0 });
+      
    }
 
                          return (
@@ -147,13 +151,14 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
                       <TouchableOpacity style={styles.button5} onPress={()=>{a(true)}}>
                       <Image source={require("./sound1.png")}/>
                       </TouchableOpacity>
-                      <Button title="Mute" />
+                      <Button title="Mute" onPress={() => Audio.setIsEnabledAsync(false)}/>
                       <Button title="Go back" onPress={() => navigation.goBack()} />
                       
                       </View>
                       </ScreenContainer>
                     );
    }
+   
    
 
 

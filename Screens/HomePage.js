@@ -122,10 +122,10 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
 
                 <Text style= {styles.headerProfile}> {route.params.name}</Text>
                 <Text style= {styles.headerTextResults}>All points: {temp}</Text>                
-                <Text style= {styles.headerTextResults}>Geriausias rezultatas(matematika): {mm}</Text>
-                <Text style= {styles.headerTextResults}>Geriausias rezultatas(istorija): {hh}</Text>
-                <Text style= {styles.headerTextResults}>Geriausias rezultatas(biologija): {bb}</Text>
-                <Text style= {styles.headerTextResults}>Geriausias rezultatas(kalbos): {ll}</Text>
+                <Text style= {styles.headerTextResults}>Results math: {mm}</Text>
+                <Text style= {styles.headerTextResults}>Results history: {hh}</Text>
+                <Text style= {styles.headerTextResults}>Results biology: {bb}</Text>
+                <Text style= {styles.headerTextResults}>Results language: {ll}</Text>
                 <View style={styles.button1}>
                 <Button title="Go back" onPress={() => navigation.goBack()} />
                 </View>
@@ -134,11 +134,22 @@ const image = { uri: "https://i.pinimg.com/originals/83/04/a9/8304a9c7cce7981bf5
    }
 
    export const SettingsPage = ({ navigation}) => {
-                    return (
+    function a (value) {
+      const { sound } =  Audio.Sound.createAsync(require('./Day.mp3'), { shouldPlay:value,volume:1.0 });
+   }
+
+                         return (
+                     
                       <ScreenContainer>
                       <ImageBackground source={image} style={styles.image}></ImageBackground>
                       <View style={styles.button1}>
+
+                      <TouchableOpacity style={styles.button5} onPress={()=>{a(true)}}>
+                      <Image source={require("./sound1.png")}/>
+                      </TouchableOpacity>
+                      <Button title="Mute" />
                       <Button title="Go back" onPress={() => navigation.goBack()} />
+                      
                       </View>
                       </ScreenContainer>
                     );
